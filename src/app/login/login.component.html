@@ -3,10 +3,16 @@
     <h3>Login</h3>
         <div class="form-group">
             <label>Username : </label>
-            <input required type="email" name="username"  class="form-control">
+            <input required type="email" name="username" [(ngModel)]="username" class="form-control">
             <label>Password : </label>
-            <input required type="password" name="password"  class="form-control">
+            <input required type="password" name="password" [(ngModel)]="password" class="form-control">
             <br>
-            <input type="submit" value="Find" class="btn btn-success" (click)="validate()">
+            <input type="submit" value="login" class="btn btn-success" (click)="validate()">
         </div>
+</div>
+<div  *ngIf="check1">
+    <h1>Login successful</h1>
+</div>
+<div  *ngIf="check">
+    <h1>Login unsuccessful</h1>
 </div>
