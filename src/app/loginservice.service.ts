@@ -27,7 +27,7 @@ export class LoginserviceService {
   constructor(private http:HttpClient) { }
 
   public validateEmail(username:any,password:any){    
-    return this.http.get("http://localhost:1809/login/user/"+username+"/"+password,{responseType: 'json'});
+    return this.http.get("http://localhost:1809/login/validate/"+username+"/"+password,{responseType: 'json'});
   }
 
 }
