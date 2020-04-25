@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 
 export class Login{
 
-  accountID:number;
+  accountID:string;
   username:string;
   password:string;
   security:string;
   
-  constructor(accountID:number,username:string,password:string,security:string)
+  constructor(accountID:string,username:string,password:string,security:string)
   {
 
       this.accountID=accountID;
@@ -17,6 +17,20 @@ export class Login{
       this.security=security;
          
       }
+}
+
+export class account{
+
+  balance:number;
+  accountID:string;
+  
+
+  constructor(balance:number,accountID:string){
+    this.balance=balance;
+    this.accountID=accountID;
+   
+  }
+
 }
 
 @Injectable({
@@ -29,5 +43,8 @@ export class LoginserviceService {
   public validateEmail(username:any,password:any){    
     return this.http.get("http://localhost:1809/login/validate/"+username+"/"+password,{responseType: 'json'});
   }
-
+  public getbalance(accountID:string){    
+    return this.http.get("http://localhost:1810/balance/getAccountbyID/"+accountID,{responseType: 'json'});
+  }
+  
 }
