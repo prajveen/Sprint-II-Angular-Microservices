@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-credit-using-cheque',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreditUsingChequeComponent implements OnInit {
 
-  constructor() { }
+  private router:Router;
+  accountNo:any;
+  constructor(private route:ActivatedRoute,router:Router) { }
 
   ngOnInit(): void {
+    let id=this.route.snapshot.paramMap.get('accountNo');
+    this.accountNo=id;
   }
 
 }

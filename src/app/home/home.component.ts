@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,10 @@ export class HomeComponent implements OnInit {
 
   public balance;
   accountNo:any;
-  constructor(private route:ActivatedRoute) { }
+  private router:Router;
+  constructor(private route:ActivatedRoute,router:Router) { 
+    this.router=router;
+  }
 
   ngOnInit(): void {
 
@@ -19,5 +22,10 @@ export class HomeComponent implements OnInit {
     this.balance=bal;
     this.accountNo=id;
   }
-
+debit(){
+  this.router.navigate(['/debit',this.accountNo]);
+}
+credit(){
+  this.router.navigate(['/credit',this.accountNo]);
+}
 }

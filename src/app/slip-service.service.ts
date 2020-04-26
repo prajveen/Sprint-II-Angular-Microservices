@@ -6,9 +6,9 @@ export class slipTransactions{
   transactionID:number;
   transactionDate:string;
   transactionType:string;
-  accountNo:number;
+  accountNo:string;
   amount:number;
-  constructor(transactionID:number ,transactionDate:string,transactionType:string,accountNo:number,amount:number){
+  constructor(transactionID:number ,transactionDate:string,transactionType:string,accountNo:string,amount:number){
 
     this.transactionID=transactionID;
     this.transactionDate=transactionDate;
@@ -28,11 +28,11 @@ export class SlipServiceService {
 
   public debitusingslip(debit:slipTransactions){   
     console.log(debit) 
-    return this.http.put("http://localhost:1813/debit-using-slip/debit-amount",{responseType: 'json'});
+    return this.http.put("http://localhost:1813/debit-using-slip/debit-amount",debit,{responseType: 'json'});
   }
   public creditusingslip(credit:slipTransactions){   
     console.log(credit) 
-    return this.http.put("http://localhost:1814/credit-using-slip/credit-amount",{responseType: 'json'});
+    return this.http.put("http://localhost:1814/credit-using-slip/credit-amount",credit,{responseType: 'json'});
   }
 
 }
