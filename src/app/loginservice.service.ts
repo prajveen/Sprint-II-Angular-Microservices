@@ -43,7 +43,8 @@ export class LoginserviceService {
   public validateEmail(username:any,password:any){    
     return this.http.get("http://localhost:1809/login/validate/"+username+"/"+password,{responseType: 'json'});
   }
-  public getbalance(accountID:string){    
+  public getbalance(accountID:string){ 
+    console.log(accountID);   
     return this.http.get("http://localhost:1810/balance/getAccountbyID/"+accountID,{responseType: 'json'});
   }
   

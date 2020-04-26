@@ -11,10 +11,10 @@ export class chequeTransactions{
   recipientAccountNo:string;
   amount:number;
   bankName:string;
-  Ifsc:string;
+  ifsc:string;
   issueDate:string;
 
-  constructor(transactionID:number,transactionDate:string,transactionType:string,chequeID:string,payeeAccountNo:string,recipientAccountNo:string,amount:number,bankName:string,Ifsc:string,issueDate:string){
+  constructor(transactionID:number,transactionDate:string,transactionType:string,chequeID:string,payeeAccountNo:string,recipientAccountNo:string,amount:number,bankName:string,ifsc:string,issueDate:string){
     this.transactionID=transactionID;
     this.transactionDate=transactionDate;
     this.transactionType=transactionType;
@@ -23,7 +23,7 @@ export class chequeTransactions{
     this.recipientAccountNo=recipientAccountNo;
     this.amount=amount;
     this.bankName=bankName;
-    this.Ifsc=Ifsc;
+    this.ifsc=ifsc;
     this.issueDate=issueDate;
     
   }

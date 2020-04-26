@@ -10,41 +10,41 @@ import { LoginserviceService, account } from '../loginservice.service';
 })
 export class DebitUsingSlipComponent implements OnInit {
 
-slip:slipTransactions=new slipTransactions(0,"","debit","",null);
-Account:account=new account(0,"");
-accountNo:any;
-private router:Router;
-message:any;
-details:any;
+  slip: slipTransactions = new slipTransactions(0, "", "debit", "", null);
+  Account: account = new account(0, "");
+  accountNo: any;
+  private router: Router;
+  message: any;
+  details: any;
 
-  constructor(private service:SlipServiceService,router:Router,private route:ActivatedRoute,private accountservice:LoginserviceService) {
-    this.router=router;
-    
-   }
+  constructor(private service: SlipServiceService, router: Router, private route: ActivatedRoute, private accountservice: LoginserviceService) {
+    this.router = router;
 
-   ngOnInit(): void {
-    let id=this.route.snapshot.paramMap.get('accountNo');
-    this.accountNo=id;
   }
 
-debit_using_slip(){
-  if(this.slip.accountNo !="" && this.slip.amount !=0 && this.slip.accountNo==this.accountNo)
-  {
-    this.service.debitusingslip(this.slip).subscribe((data)=>this.message=data);
-    if(this.message==null)
-    {
-      this.accountservice.getbalance(this.slip.accountNo).subscribe((data)=>this.details=data);
-      this.Account=this.details;
-      console.log(this.Account.balance);
-      this.router.navigate(['/home',this.slip.accountNo,this.Account.balance]);
+  ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('accountNo');
+    this.accountNo = id;
+  }
+
+  debit_using_slip() {
+    if (this.slip.accountNo == this.accountNo) {
+      this.service.debitusingslip(this.slip).subscribe((data) => this.message = data);
+        if (this.message == null) {
+          this.accountservice.getbalance(this.slip.accountNo).subscribe((data) =>this.details = data);
+            this.Account = this.details;
+            console.log(this.Account.balance);
+            this.router.navigate(['/home', this.slip.accountNo, this.Account.balance]);
+          
+        }
+        else {
+          this.message = "Sorry!! transaction couldnt complete";
+        }
+      
     }
-    else{
-      this.message = "Sorry!! transaction couldnt complete";
+    else {
+      this.message = "Sorry!! give all the fields";
     }
   }
-  else{
-    this.message = "Sorry!! give all the fields";
-  }
-}
 
 }
