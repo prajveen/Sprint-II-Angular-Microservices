@@ -6,19 +6,22 @@ export class chequeTransactions{
   transactionID:number;
   transactionDate:string;
   transactionType:string;
-  chequeID:string;
+  chequeID:number;
+  chequeNo:string;
   payeeAccountNo:string;
   recipientAccountNo:string;
   amount:number;
   bankName:string;
   ifsc:string;
-  issueDate:string;
+  issueDate:Date;
 
-  constructor(transactionID:number,transactionDate:string,transactionType:string,chequeID:string,payeeAccountNo:string,recipientAccountNo:string,amount:number,bankName:string,ifsc:string,issueDate:string){
+  constructor(transactionID:number,transactionDate:string,transactionType:string,chequeID:number,chequeNo:string,payeeAccountNo:string,recipientAccountNo:string,amount:number,bankName:string,ifsc:string,issueDate:Date
+    ){
     this.transactionID=transactionID;
     this.transactionDate=transactionDate;
     this.transactionType=transactionType;
     this.chequeID=chequeID;
+    this.chequeNo=chequeNo
     this.payeeAccountNo=payeeAccountNo;
     this.recipientAccountNo=recipientAccountNo;
     this.amount=amount;
@@ -40,11 +43,11 @@ export class ChequeServiceService {
   
   public debitusingcheque(debit:chequeTransactions){   
     console.log(debit) 
-    return this.http.put("http://localhost:1811/debit-using-cheque/debit-amount",debit,{responseType: 'json'});
+    return this.http.put("http://localhost:1811/debit-using-cheque/debit-amount",debit,{responseType: 'text'});
   }
   public creditusingcheque(credit:chequeTransactions){   
     console.log(credit) 
-    return this.http.put("http://localhost:1812/credit-using-cheque/credit-amount",credit,{responseType: 'json'});
+    return this.http.put("http://localhost:1812/credit-using-cheque/credit-amount",credit,{responseType: 'text'});
   }
 
 }

@@ -1,20 +1,61 @@
+<div class="f">
+    <br>
+    <div class="row">
+        <div class="col-md-7"></div>
+        <div class="col-md-4">
+            <br><br>
+            <div class="card">
+                <img class="center" src="assets\images\user.png" width="250" height="250">
+                <div class="card-body">
+                    <div class="container">
+                        <h3 class=" card=title text-center b ">Login</h3>
+                        <br>
+                        <div class="card">
+                            <div class="container">
+                                <div class="container ">
+                                    <br>
+                                    <form name="form" (ngSubmit)="f.form.valid && validate()" #f="ngForm" novalidate>
+                                        <div class="form-group">
+                                            <label for="username"> Username :</label>
+                                            <input required type="email" class="form-control" 
+                                                 placeholder="Enter your email address"
+                                                name="username" [(ngModel)]="login.username" #username="ngModel"
+                                                [ngClass]="{ 'is-invalid': f.submitted && username.invalid }"
+                                                required />
+                                            <div *ngIf='f.submitted && username.invalid && username.errors '
+                                                class="invalid-feedback c">
+                                                <div [hidden]='!username.errors.required'> *Provide Username </div>
+                                                <div *ngIf='username.errors.type'>*Invalid username
+                                                </div>
+                                        
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password : </label>
+                                            <input type="password" class="form-control"
+                                                placeholder="Enter your password" name="password"
+                                                [(ngModel)]="login.password" #password="ngModel"
+                                                [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required />
+                                            <div *ngIf='f.submitted && password.invalid && password.errors '
+                                                class="invalid-feedback c">
+                                                <div [hidden]='!password.errors.required'> *Provide password </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group text-center">
+                                            <button class="btn btn-primary">Login</button>
+                                        </div>
+                                        <br>
+                                    </form>
 
-<div class="container">
-    <br><br>
-    <h3>Login</h3>
-        <div class="form-group">
-            <label>Username : </label>
-            <input required type="email" name="username" [(ngModel)]="login.username" class="form-control">
-            <label>Password : </label>
-            <input required type="password" name="password" [(ngModel)]="login.password" class="form-control">
-            <br>
-            <button type="submit" value="login" class="btn btn-success" (click)="validate()">Login</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-</div>
-
-<div  *ngIf="check1">
-    <h1>Login successful</h1>
-</div>
-<div  *ngIf="check">
-    <h1>Login unsuccessful</h1>
+    </div>
+    <div class="col-md-1 "></div>
+</div><br><br><br>
 </div>

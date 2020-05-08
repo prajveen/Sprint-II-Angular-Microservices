@@ -11,7 +11,7 @@ import { account, LoginserviceService } from '../loginservice.service';
 export class CreditUsingSlipComponent implements OnInit {
 
   slip: slipTransactions = new slipTransactions(0, "", "credit", "", null)
-  Account: account = new account(0, "");
+  Account: account = new account("", "","",0,null);
   accountNo: any;
   private router: Router;
   message: any;
@@ -29,25 +29,30 @@ export class CreditUsingSlipComponent implements OnInit {
   }
 
   credit_using_slip() {
-    if (this.slip.accountNo != "" && this.slip.amount != 0 && this.slip.accountNo == this.accountNo) {
-      this.service.creditusingslip(this.slip).subscribe((data) => {
-        this.message = data;
-        this.details1 = this.message;
-        if (this.details1 == null) {
-          this.accountservice.getbalance(this.slip.accountNo).subscribe((data) => {
-            this.details = data;
-            this.Account = this.details;
-            console.log(this.Account.balance);
-            this.router.navigate(['/home', this.slip.accountNo, this.Account.balance]);
-          });
-        }
-        else {
-          this.message = "Sorry!! transaction couldnt complete";
-        }
-      });
+    if (this.slip.accountNo == this.accountNo) {
+      if (this.slip.amount <= 100 || this.slip.amount >= 200000) {
+        alert("The amount to be credited should be between 100-200000");
+      }
+      else {
+        this.service.creditusingslip(this.slip).subscribe((data) => {
+          this.message = data;
+          this.details1 = this.message;
+          if (this.details1 == null) {
+            alert("Transaction unsuccesfull");
+          }
+          else {
+            this.accountservice.getbalance(this.slip.accountNo).subscribe((data) => {
+              this.details = data;
+              this.Account = this.details;
+              alert("Transaction succesfull");
+              this.router.navigate(['/home', this.slip.accountNo, this.Account.amount]);
+            });
+          }
+        });
+      }
     }
     else {
-      this.message = "Sorry!! employee was not inserted";
+      alert("the Payee Account field should contain your accountId only");
     }
   }
 

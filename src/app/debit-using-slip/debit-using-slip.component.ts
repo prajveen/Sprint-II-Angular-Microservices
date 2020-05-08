@@ -11,11 +11,14 @@ import { LoginserviceService, account } from '../loginservice.service';
 export class DebitUsingSlipComponent implements OnInit {
 
   slip: slipTransactions = new slipTransactions(0, "", "debit", "", null);
-  Account: account = new account(0, "");
+  slip1: slipTransactions = new slipTransactions(0, "", "debit", "", null);
+  Account: account = new account("", "","",0,null);
+  Account1: account = new account("", "","",0,null);
   accountNo: any;
   private router: Router;
   message: any;
   details: any;
+  details1: any;
 
   constructor(private service: SlipServiceService, router: Router, private route: ActivatedRoute, private accountservice: LoginserviceService) {
     this.router = router;
@@ -27,24 +30,43 @@ export class DebitUsingSlipComponent implements OnInit {
     this.accountNo = id;
   }
 
-  debit_using_slip() {
+  debit_using_slip(): void {
     if (this.slip.accountNo == this.accountNo) {
-      this.service.debitusingslip(this.slip).subscribe((data) => this.message = data);
-        if (this.message == null) {
-          this.accountservice.getbalance(this.slip.accountNo).subscribe((data) =>this.details = data);
-            this.Account = this.details;
-            console.log(this.Account.balance);
-            this.router.navigate(['/home', this.slip.accountNo, this.Account.balance]);
-          
+      if ((this.slip.amount <= 100) || (this.slip.amount >= 200000)) {
+        alert("The amount to be debited should be between 100-200000");
+      }
+      else {
+        this.accountservice.getbalance(this.slip.accountNo).subscribe((data) => {
+          this.details = data;
+          this.Account1 = this.details;
+        });
+        if (this.Account1.amount <= this.slip.amount) {
+          alert("Sorry..! You have insufficient balance to debit...!");
         }
         else {
-          this.message = "Sorry!! transaction couldnt complete";
+          this.service.debitusingslip(this.slip).subscribe((data) => {
+            this.details1 = data;
+            if (this.details1 == null) {
+              alert("Transaction unsuccesfull");
+            }
+            else {
+              this.accountservice.getbalance(this.slip.accountNo).subscribe((data) => {
+                this.details = data;
+                this.Account = this.details;
+                alert("Transaction succesfull......!");
+                this.router.navigate(['/home', this.slip.accountNo, this.Account.amount]);
+              });
+            }
+          });
         }
-      
+      }
+
+
     }
     else {
-      this.message = "Sorry!! give all the fields";
+      alert("Ooopps......! You haven't given your accountID");
     }
+
   }
 
 }

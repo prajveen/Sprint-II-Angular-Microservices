@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginserviceService, Login, account } from '../loginservice.service';
+import { LoginserviceService, Login, account} from '../loginservice.service';
 import { Router } from '@angular/router';
 
 
@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  login: Login = new Login("", "", "", "");
-  login1: Login = new Login('', "", "", "");
-  Account: account = new account(0, "");
+  login: Login = new Login("", "", "");
+  login1: Login = new Login("", "", "",);
+
   details: any;
   details1: any;
   username: any;
@@ -31,23 +31,17 @@ export class LoginComponent implements OnInit {
   }
 
   validate() {
-    console.log(this.login.username, this.login.password);
     this.service.validateEmail(this.login.username, this.login.password).subscribe((data) => {
       this.details = data;
       this.login1 = this.details;
+      console.log(this.login1);
       if (this.login1 == null) {
-        this.check = true;
-        this.check1 = false;
+        alert("Ooops..! Invalid username/password .");
       }
       else {
-        this.check1 = true;
-        this.check = false;
-        this.service.getbalance(this.login1.accountID).subscribe((data) => {
-          this.details1 = data;
-          this.Account = this.details1;
-          console.log(this.Account.balance);
-          this.router.navigate(['/home', this.login1.accountID, this.Account.balance]);
-        });
+        alert("Login Successfull");
+        this.router.navigate(['/account']);
+    
       }
     });
 

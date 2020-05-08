@@ -1,20 +1,14 @@
 .a{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 25px;
-
-    
 }
 .b{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 35px;
-
-    
 }
 .c{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 15px;
-
-    
+    font-size: 15px;    
 }
 .center {
     display: block;
@@ -22,8 +16,17 @@
     margin-right: auto;
     width: 50%;
   }
-  .f{
+ 
+  .s{
     background-color:khaki;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+  
+  .f{
+    background-image: url("src\assets\images\Background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
   }

@@ -12,6 +12,8 @@ import { DebitUsingChequeComponent } from './debit-using-cheque/debit-using-cheq
 import { CreditUsingChequeComponent } from './credit-using-cheque/credit-using-cheque.component';
 import { CreditUsingSlipComponent } from './credit-using-slip/credit-using-slip.component';
 import { DebitUsingSlipComponent } from './debit-using-slip/debit-using-slip.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { DebitUsingSlipComponent } from './debit-using-slip/debit-using-slip.com
     DebitUsingChequeComponent,
     CreditUsingChequeComponent,
     CreditUsingSlipComponent,
-    DebitUsingSlipComponent
+    DebitUsingSlipComponent,
+    AccountDetailsComponent
   ],
   imports: [
     BrowserModule,

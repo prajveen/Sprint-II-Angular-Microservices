@@ -1,34 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-export class Login{
+export class Login {
 
-  accountID:string;
-  username:string;
-  password:string;
-  security:string;
-  
-  constructor(accountID:string,username:string,password:string,security:string)
-  {
+  employeeID: string;
+  username: string;
+  password: string;
 
-      this.accountID=accountID;
-      this.username=username;
-      this.password=password;
-      this.security=security;
-         
-      }
+
+  constructor(employeeID: string, username: string, password: string) {
+
+    this.employeeID = employeeID;
+    this.username = username;
+    this.password = password;
+
+  }
 }
 
-export class account{
+export class account {
 
-  balance:number;
-  accountID:string;
-  
+  accountId: string;
+  branch: string;
+  accountType: string;
+  amount: number;
+  lastUpdated: Date;
 
-  constructor(balance:number,accountID:string){
-    this.balance=balance;
-    this.accountID=accountID;
-   
+
+
+
+  constructor(accountId: string,
+    branch: string,
+    accountType: string,
+    amount: number,
+    lastUpdated: Date) {
+    this.accountId=accountId;
+    this.branch=branch;
+    this.accountType=accountType;
+    this.amount=amount;
+    this.lastUpdated=lastUpdated;
+
   }
 
 }
@@ -38,14 +48,14 @@ export class account{
 })
 export class LoginserviceService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  public validateEmail(username:any,password:any){    
-    return this.http.get("http://localhost:1809/login/validate/"+username+"/"+password,{responseType: 'json'});
+  public validateEmail(username: any, password: any) {
+    return this.http.get("http://localhost:1809/login/validate/" + username + "/" + password, { responseType: 'json' });
   }
-  public getbalance(accountID:string){ 
-    console.log(accountID);   
-    return this.http.get("http://localhost:1810/balance/getAccountbyID/"+accountID,{responseType: 'json'});
+  public getbalance(accountId: string) {
+    console.log(accountId);
+    return this.http.get("http://localhost:1810/balance/getAccountbyID/" + accountId, { responseType: 'json' });
   }
-  
+
 }

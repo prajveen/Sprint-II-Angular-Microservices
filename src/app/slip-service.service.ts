@@ -28,11 +28,11 @@ export class SlipServiceService {
 
   public debitusingslip(debit:slipTransactions){   
     console.log(debit) 
-    return this.http.put("http://localhost:1813/debit-using-slip/debit-amount",debit,{responseType: 'json'});
+    return this.http.put("http://localhost:1813/debit-using-slip/debit-amount",debit,{responseType: 'text'});
   }
   public creditusingslip(credit:slipTransactions){   
     console.log(credit) 
-    return this.http.put("http://localhost:1814/credit-using-slip/credit-amount",credit,{responseType: 'json'});
+    return this.http.put("http://localhost:1814/credit-using-slip/credit-amount",credit,{responseType: 'text'});
   }
 
 }

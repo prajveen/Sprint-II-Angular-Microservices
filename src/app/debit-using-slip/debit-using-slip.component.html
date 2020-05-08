@@ -1,36 +1,52 @@
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6">
-                <br><br><br><br>
-                <h3 class="text-center">Debit amount using slip</h3>
+<div class="container">
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-md-6 ">
+            <br><br>
+            <img class="float-left" src="assets\images\slip.png" width="600" height="350">
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <br><br>
+                <h3 class="card-title text-center b">Debit amount using slip</h3>
                 <br>
-                <form name="form" (ngSubmit)="f.form.valid && debit_using_slip()" #f="ngForm" novalidate>
-                    <div class="form-group">
-                        <label for="accountNo"> Account no:</label>
-                        <input type="number" class="form-control" placeholder="should be 12 digits" name="accountNo"
-                            [(ngModel)]="slip.accountNo" #accountNo="ngModel"
-                            [ngClass]="{ 'is-invalid': f.submitted && accountNo.invalid }" required />
-                        <div *ngIf="f.submitted && accountNo.invalid" class="invalid-feedback">
-                            <div *ngIf="accountNo.errors.required">AccountNo is required</div>
-                        </div>
+                <div class="container">
+                    <div class="container a ">
+                        <br>
+                        <form name="form" (ngSubmit)="f.form.valid && debit_using_slip()" #f="ngForm" novalidate>
+                            <div class="form-group">
+                                <label for="accountNo"> Account no:</label>
+                                <input required type="text" class="form-control" pattern=[0-9]* minlength="12"
+                                    maxlength="12" placeholder="should be 12 digits" name="accountNo"
+                                    [(ngModel)]="slip.accountNo" #accountNo="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && accountNo.invalid }" required />
+                                <div *ngIf='f.submitted && accountNo.invalid && accountNo.errors '
+                                    class="invalid-feedback c">
+                                    <div [hidden]='!accountNo.errors.required'> *Provide Account No </div>
+                                    <div *ngIf='accountNo.errors.pattern'>*Account Id should be only numbers</div>
+                                    <div *ngIf='accountNo.errors.minlength'>*Account Id should be of 12 digits</div>
+                                    <div *ngIf='accountNo.errors.maxlength'>*Account Id should be of 12 digits</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Amount : </label>
+                                <input type="number" class="form-control" placeholder="should be between 100-200000"
+                                    min="100" max="200000" pattern=[0-9]* name="amount" [(ngModel)]="slip.amount"
+                                    #amount="ngModel" [ngClass]="{ 'is-invalid': f.submitted && amount.invalid }"
+                                    required />
+                                <div *ngIf='f.submitted && amount.invalid && amount.errors ' class="invalid-feedback c">
+                                    <div [hidden]='!amount.errors.required'> *Provide Amount </div>
+                                    <div *ngIf='amount.errors.pattern'>*Amount should be only numbers</div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary">Debit</button>
+                            </div>
+                            <br>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="amount">Amount : </label>
-                        <input type="number" class="form-control"  min="100" max="200000"
-                            placeholder="should be between 100-200000" name="amount" [(ngModel)]="slip.amount"
-                            #amount="ngModel" [ngClass]="{ 'is-invalid': f.submitted && amount.invalid }" required />
-                        <div *ngIf="f.submitted && amount.invalid " class="invalid-feedback">
-                            <div *ngIf="amount.errors.required">Amount is required</div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-group text-center">
-                        <button class="btn btn-primary">Debit</button>
-                    </div>
-                    <br><br><br><br>
-                </form>
+                </div>
             </div>
         </div>
     </div>

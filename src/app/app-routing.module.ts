@@ -8,17 +8,20 @@ import { DebitUsingChequeComponent } from './debit-using-cheque/debit-using-cheq
 import { CreditUsingChequeComponent } from './credit-using-cheque/credit-using-cheque.component';
 import { DebitUsingSlipComponent } from './debit-using-slip/debit-using-slip.component';
 import { CreditUsingSlipComponent } from './credit-using-slip/credit-using-slip.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 
 
 const routes: Routes = [
   { path: 'Login',component: LoginComponent},
+  { path: 'account',component: AccountDetailsComponent},
   { path: 'home/:accountNo/:balance',component:HomeComponent},
   { path: 'debit/:accountNo',component:DebitComponent},
   { path: 'credit/:accountNo',component:CreditComponent},
   { path: 'debitusingcheque/:accountNo',component:DebitUsingChequeComponent},
   { path: 'creditusingcheque/:accountNo',component:CreditUsingChequeComponent},
   { path: 'debitusingslip/:accountNo',component:DebitUsingSlipComponent},
-  { path: 'creditusingslip/:accountNo',component:CreditUsingSlipComponent}
+  { path: 'creditusingslip/:accountNo',component:CreditUsingSlipComponent},
+  { path: '', redirectTo: '/Login', pathMatch:'full'}
   
 ];
 
